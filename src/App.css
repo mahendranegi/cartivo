@@ -1,38 +1,152 @@
-.App {
-  text-align: center;
+/* Header */
+header{
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    padding: 16px 20px;
+    align-items: center;
+    
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header h1{
+    display: flex;
+    gap: 12px;
+    color: #008ECC;
+    margin: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header .ant-input-affix-wrapper{
+    background: #F3F9FB;
+    width: 500px;
+    border: 1px solid #F3F9FB;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cartSec{
+    display: flex;
+    gap: 8px;
+    font-weight: bold;
+    align-items: center;
+    & .anticon-shopping-cart{
+        color: #008ECC;
+        cursor: pointer;
+        font-size: 20px;
+    }
 }
-
-.App-link {
-  color: #61dafb;
+.signUp{
+    display: flex;
+    gap: 8px;
 }
+.signUp svg{
+color: #008ECC;
+        cursor: pointer;
+        font-size: 20px;
+}
+.cartNum{
+    position: relative;
+}
+.cartNum .num{
+    background: #008ECC;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    position: absolute;
+    right: -13px;
+    top: -12px;
+    color: #fff;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.rightNotify{
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    position: relative;
+}
+.rightNotify em{
+    width: 1px;
+    height: 20px;
+    background: #e0e0e0;
+}
+.rightPannel{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.filterSec{
+    padding: 16px 20px;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    border-top: 1px solid #EDEDED;
+    border-bottom: 1px solid #EDEDED;
+    justify-content: center;
+}
+.filterSec li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F3F9FB;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px 24px;
+    min-width: 100px;
+    transition: 300ms;
+    color: #212121;
+}
+.filterSec li:hover{
+    background: #008ECC;
+    color: #fff;
+}
+.filterSec li.active{
+    background: #008ECC;
+    color: #fff;
+    
+}
+/* hero sec */
+.heroSec .slick-arrow{
+    background: #f3f9fb;
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+    color: #212121;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.heroSec .slick-prev::after,.heroSec .slick-next::after{
+    position: static !important;
+}
+.content img{
+    position: absolute;
+    top: 0;
+    right: 36px;
+}
+.content{
+    position: relative;
+}
+.heroSec{
+    background: #212844;
+    height: 300px;
+    padding: 20px 24px;
+}
+.headTitleSec{
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 24px 0;
+    margin: 0 0 40px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.headTitleSec h2{
+    margin: 0;
+    color: #666666;
+    border-bottom: 2px solid #008ecc;
+    padding: 0 0 16px;
+}
+.headTitleSec h2 span{
+    color: #008ECC;
 }

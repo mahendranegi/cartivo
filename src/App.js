@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from './pages/Home'
+import ProductDetails from './pages/ProductDetails'
+import Layout from './layout/Layout'
+import { useEffect, useState } from 'react';
 function App() {
+  const[productData,setProductData]= useState([])
+  useEffect(()=>{
+    fetch("https://dummyjson.com/products").then((response)=>{
+      return response.json()
+    }).then((data)=>{
+      console.log(data.products,'data_____');
+      setProductData(data.products)
+    }).catch((error)=>{
+      console.log(error,'___error')
+    })
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+      <Route path="/" element={<Home productData={productData} />}/>
+       <Route path="/product-details" element={<ProductDetails />}/>
+        {/* <Route path="/" element={<Home />}/> */}
+      Hellow
+      </Route>
+    </Routes>
   );
 }
 
