@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { usersContext } from '../context/ProvideContext';
 
 function Cart() {
-   const value = useSelector((state)=>state.cart.value)
+  const {value} = useContext(usersContext);
   return (
     <div className='cartSec'>
         {/* <span>Cart</span> */}

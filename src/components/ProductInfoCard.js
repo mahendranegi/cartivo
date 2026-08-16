@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card,Button } from 'antd';
-import { useDispatch } from 'react-redux';
-import { addToCart, removeItem } from '../redux/slice';
+import { usersContext } from '../context/ProvideContext';
 const { Meta } = Card;
 
-const ProductInfoCard = ({title,description,image,price,removeItem,addToCart}) => {
-  const dispatch = useDispatch();
+const ProductInfoCard = ({title,description,image,price,products}) => {
+  
+  const {addToCart,value,removeToCart,productData} = useContext(usersContext);
   return(
  <Card
     hoverable
@@ -22,8 +22,8 @@ const ProductInfoCard = ({title,description,image,price,removeItem,addToCart}) =
     <Meta title={title} description={description}  />
     <span>{price}</span>
     <div style={{display:'flex',gap:'12px'}}>       
-        <Button onClick={()=>dispatch(removeItem())} type="secondary">Remove</Button>
-        <Button onClick={()=> dispatch(addToCart())} type="primary">AddToCart</Button>
+        <Button onClick={()=>removeToCart()} type="secondary">Remove</Button>
+        <Button onClick={()=> addToCart(products)} type="primary">AddToCart</Button>
     </div>
   </Card>
   )
