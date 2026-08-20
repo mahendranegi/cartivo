@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { usersContext } from '../context/ProvideContext'
 
-function FilterTabs() {
+function FilterTabs({filterCat,handleOnclick}) {
+  console.log(filterCat,'category item...')
+  const {productData} = useContext(usersContext);
+
+  
+
   return (
+    <>
+    
     <ul className='filterSec'>
-        <li className='active'>Fashion</li>
-        <li>Fashion</li>
-        <li>Fashion</li>
-        <li>Fashion</li>
-        <li>Fashion</li>
-        <li>Fashion</li>
-        <li>Fashion</li>
-
+      <h3 style={{margin: '0'}}>Category</h3>
+      {filterCat.map((item)=>{
+        return <li onClick={()=>handleOnclick(item)} key={item}>{item}</li>
+      })}
     </ul>
+    </>
   )
 }
 

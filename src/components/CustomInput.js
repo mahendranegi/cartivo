@@ -3,9 +3,9 @@ import { SearchOutlined } from '@ant-design/icons';
 
 import { Input } from 'antd';
 
-function CustomInput() {
+function CustomInput({placeholder,handleOnchange,pName}) {
   return (
-    <><Input size="large" placeholder="large size" prefix={<SearchOutlined />} /></>
+    <><Input size="large" value={pName} onChange={()=>handleOnchange()} placeholder={placeholder} prefix={<SearchOutlined />} /></>
         
 
   )
