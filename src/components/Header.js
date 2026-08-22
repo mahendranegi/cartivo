@@ -5,7 +5,7 @@ import { MenuUnfoldOutlined } from '@ant-design/icons';
 import SignUp from './SignUp';
 import { usersContext } from '../context/ProvideContext';
 import { useNavigate } from 'react-router-dom';
-
+import LogoImg from '../images/logo.png'
 function Header() {
   const[val,setVal] = useState("")
   const navigate = useNavigate();
@@ -22,10 +22,20 @@ function Header() {
   }
   return (
     <header>
-        <h1 onClick={()=>navigate('/')}><MenuUnfoldOutlined />CarTivo</h1>        
+        <div className='logoContain'>
+          <img onClick={()=>navigate('/')} src={LogoImg} alt={LogoImg} className="logoImg"/> 
+           <CustomInput  pName={val} handleOnchange={(e)=>handleOnchange(e)} placeholder="Search by name of products"/>
+        </div>
+              
         <div className='rightPannel'>
-          <CustomInput  pName={val} handleOnchange={(e)=>handleOnchange(e)} placeholder="Search by name of products"/>
+
           <div className='rightNotify'>
+            <ul>
+              <li onClick={()=>navigate("/")}>Home</li>
+              <li onClick={()=>navigate("/mens")}>Mens</li>
+              <li onClick={()=>navigate("/womens")}>Womens</li>
+              <li onClick={()=>navigate("/kids")}>Kids</li>
+            </ul>
           <SignUp />
           <em></em>
           <Cart handleViewCart={()=>handleOk()} />

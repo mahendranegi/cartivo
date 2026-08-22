@@ -13,7 +13,7 @@ function FilterTabs({filterCat,handleOnclick}) {
     <ul className='filterSec'>
       <h3 style={{margin: '0'}}>Category</h3>
       {filterCat.map((item)=>{
-        return <li onClick={()=>handleOnclick(item)} key={item}>{item}</li>
+        return <li className={item.category === item ? 'active' : ''} onClick={()=>handleOnclick(item)} key={item}>{item}</li>
       })}
     </ul>
     </>

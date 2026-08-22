@@ -20,8 +20,19 @@ header h1{
 }
 header .ant-input-affix-wrapper{
     background: #F3F9FB;
-    width: 500px;
+    width: 380px;
     border: 1px solid #F3F9FB;
+}
+.logoContain{
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.logoContain .ant-input-affix-wrapper {
+  height : 48px;
+}
+.logoImg{
+  width: 150px;
 }
 .cartSec{
     display: flex;
@@ -46,8 +57,11 @@ color: #008ECC;
 .cartNum{
     position: relative;
 }
+body .ant-btn{
+  background: #037bfe !important;
+}
 .cartNum .num{
-    background: #008ECC;
+    background: #fc0a6a;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -66,6 +80,16 @@ color: #008ECC;
     gap: 24px;
     align-items: center;
     position: relative;
+}
+
+.rightNotify ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0;
+  width: 100%;
+  align-items: center;
 }
 .rightNotify em{
     width: 1px;
@@ -550,7 +574,7 @@ color: #008ECC;
       border-top-right-radius: 12px;
 }
 .pos{
-      background: #1090cc;
+      background: #fe4134;
          
     color: #fff;
     padding: 8px 6px;

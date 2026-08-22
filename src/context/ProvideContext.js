@@ -26,6 +26,14 @@ function ProvideContext({ children }) {
 
   }, []);
 
+const handleInfiniteScroll = () =>{
+  console.log("first")
+}
+
+  //window scroll lazy loading
+  useEffect(()=>{
+    window.addEventListener("scorll",handleInfiniteScroll);
+  },[])
   //Add to Cart
 
   const addToCart = (id, products, setNotify) => {
