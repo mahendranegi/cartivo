@@ -307,6 +307,26 @@ body .ant-btn{
 /* Responsive */
 
 @media (max-width: 600px) {
+  body .flexBody .filterSec{
+        flex-direction: row;
+    height: fit-content;
+    flex-wrap: wrap;
+    padding: 0;
+            position: static !important; 
+    border: none;
+
+  }
+  .filterSec li{min-width: auto;padding: 8px 12px;}
+  header {
+    display: none;
+  }
+   .flexBody .filterSec h3{display: none;}
+  .flexBody .filterSec{
+    position: static;
+  }
+  .flexBody{
+    flex-direction: column;
+  }
   .viewCartCard {
     gap: 14px;
     padding: 14px;
@@ -573,6 +593,23 @@ body .ant-btn{
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
 }
+.ant-radio-group{
+      display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.mainDiv{
+  display: flex;
+  gap: 24px
+}
+
+.productCards{
+  width: 100%;
+      display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: start;
+}
 .pos{
       background: #fe4134;
          
@@ -646,6 +683,9 @@ body .ant-btn{
 /* Mobile */
 
 @media (max-width: 600px) {
+  header{
+        flex-direction: column;
+  }
   .footerTop {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px 20px;

@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { usersContext } from '../context/ProvideContext'
+import { Radio } from 'antd';
 
 function FilterTabs({filterCat,handleOnclick}) {
   console.log(filterCat,'category item...')
   const {productData} = useContext(usersContext);
-
+ 
   
 
   return (
+
     <>
     
     <ul className='filterSec'>
@@ -15,7 +17,10 @@ function FilterTabs({filterCat,handleOnclick}) {
       {filterCat.map((item)=>{
         return <li className={item.category === item ? 'active' : ''} onClick={()=>handleOnclick(item)} key={item}>{item}</li>
       })}
+     
+     
     </ul>
+    
     </>
   )
 }

@@ -2,10 +2,45 @@ import React, { useContext, useEffect, useState } from 'react'
 import { usersContext } from '../context/ProvideContext'
 import ProductInfoCard from '../components/ProductInfoCard'
 import axios from 'axios';
-
+import { Radio } from 'antd';
 function Mens() {
     const [mensProducts, setMensProducts] = useState([]);
+     const [filteredProducts, setFilteredProducts] = useState([]);
+const [value, setValue] = useState(0);
+  const onChange = (e) => {
+  const selectedValue = e.target.value;
 
+  let filtered = [];
+
+  if (selectedValue === '0-5') {
+    filtered = mensProducts.filter(
+      item => item.discountPercentage >= 0 &&
+              item.discountPercentage <= 5
+    );
+  }
+
+  if (selectedValue === '5-10') {
+    filtered = mensProducts.filter(
+      item => item.discountPercentage > 5 &&
+              item.discountPercentage <= 10
+    );
+  }
+
+  if (selectedValue === '10-15') {
+    filtered = mensProducts.filter(
+      item => item.discountPercentage > 10 &&
+              item.discountPercentage <= 15
+    );
+  }
+
+  if (selectedValue === '15+') {
+    filtered = mensProducts.filter(
+      item => item.discountPercentage > 15
+    );
+  }
+
+  setFilteredProducts(filtered);
+};
   useEffect(() => {
     const fetchMensProducts = async () => {
       try {
@@ -22,7 +57,8 @@ function Mens() {
         ];
 
         setMensProducts(allMensProducts);
-
+// Initially show all products
+        setFilteredProducts(allMensProducts);
         console.log(allMensProducts, 'all mens products');
       } catch (error) {
         console.log(error);
@@ -33,7 +69,17 @@ function Mens() {
   }, []);
   return (
     <div className='mainDiv'>
-        {mensProducts.map((item)=>{
+      <div>
+         <h4>Discount Range</h4>
+              <Radio.Group onChange={onChange}>
+              <Radio value="0-5">0% - 5%</Radio>
+              <Radio value="5-10">5% - 10%</Radio>
+              <Radio value="10-15">10% - 15%</Radio>
+              <Radio value="15+">15% & Above</Radio>
+            </Radio.Group>
+      </div>
+      <div className='productCards'>
+        {filteredProducts.map((item)=>{
             return  <ProductInfoCard
             rating={item?.rating} 
             title={item?.title} 
@@ -43,6 +89,7 @@ function Mens() {
             products={item} 
             id={item?.id}/>
         })}
+        </div>
     </div>
   )
 }
