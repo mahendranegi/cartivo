@@ -1,6 +1,5 @@
 /* Header */
 body{
-  background: #eff3f6;
   font-family: "Roboto", sans-serif;
 }
 .container{
@@ -119,9 +118,54 @@ body .ant-btn{
     margin: 0;
     list-style: none;
     display: flex;
-    gap: 16px;
+    gap: 8px;
     border-top: 1px solid #EDEDED;
     border-bottom: 1px solid #EDEDED;
+}
+.filterSec .ant-radio-group{
+gap: 4px;
+}
+.filterSec h3{
+      margin: 12px 0 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #141414;
+        letter-spacing: 2px;
+    font-family: "Poppins", sans-serif;
+}
+.shortBySection{
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+  border-radius: 6px;
+  height: 36px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  width: 300px;
+  white-space: nowrap;
+}
+.filteredSection .container{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.filteredSection h3{
+  margin: 0;
+}
+.shortBySection span{
+font-size: 11px;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.shortBySection .ant-select-focused{
+border: none !important;
+box-shadow: none !important;
+}
+.shortBySection .ant-select{
+border: none;
+    width: 100%;
 }
 .filterSec li{
     display: flex;
@@ -131,7 +175,6 @@ body .ant-btn{
     border-radius: 8px;
     cursor: pointer;
     padding: 8px 24px;
-    min-width: 100px;
     transition: 300ms;
     color: #212121;
 }
@@ -509,7 +552,22 @@ body .ant-btn{
   background: #172337;
   color: #fff;
 }
-
+.loadingBg{
+  background: #00000080;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  color: #fff;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+}
+.ant-spin{
+  color: #fff !important;
+}
 /* Footer Top */
 
 .footerTop {
@@ -629,9 +687,19 @@ body .ant-btn{
 
   will-change: transform;
 }
+.filteredSection{
+  padding: 12px 24px;
+  position: sticky;
+  top: 84px;
+  z-index: 9;
+  background: #fff;
+      box-shadow: 0 8px 8px -4px rgba(40, 44, 63, .04);
+}
 .bannerContent h1{
   margin: 0;
-  font-size: 64px;
+      color: #fc0a6a;
+  font-size: 42px;
+    font-family: "Sekuya", system-ui;
 }
 .bannerContent {
   position: absolute;
@@ -863,21 +931,39 @@ body .productCards .ant-card {
 }
 .flexBody .filterSec{
   flex-direction: column;
+  width: 186px;
   background: #fff;
     padding: 16px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
+    overflow-x: auto;
         position: sticky;
-    top: 100px;
+    top: 150px;
     height: calc(100vh - 160px);
 }
+
 .mainDiv{
    background: #fff;
     padding: 16px;
+        width: 100%;
+        height: fit-content;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
 }
-
+.spinHeight{
+      align-items: center;
+    display: flex !important;
+    height: 200px;
+    justify-content: center;
+    width: 100%;
+}
+.spinProducts {
+  position: absolute;
+  color: #0242d9 !important;
+}
+.rightNotify ul li{
+  cursor: pointer;
+}
 
 .login-page {
   min-height: calc(100vh - 48px);

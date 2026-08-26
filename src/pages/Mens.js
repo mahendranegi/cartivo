@@ -5,10 +5,18 @@ import axios from 'axios';
 import { Radio } from 'antd';
 import InnerBanner from '../components/InnerBanner';
 import BannerImg from '../images/men.webp'
+import { Alert, Flex, Spin } from 'antd';
+
+
 function Mens() {
-    const [mensProducts, setMensProducts] = useState([]);
-     const [filteredProducts, setFilteredProducts] = useState([]);
-const [value, setValue] = useState(0);
+
+  const[page,setPage] = useState(1);
+  const[loading,setLoading] = useState(false);
+  const LIMIT = 2;
+  const SKIP = (page - 1) * LIMIT;
+  const [mensProducts, setMensProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [value, setValue] = useState(0);
   const onChange = (e) => {
   const selectedValue = e.target.value;
 
@@ -43,13 +51,12 @@ const [value, setValue] = useState(0);
 
   setFilteredProducts(filtered);
 };
-  useEffect(() => {
-    const fetchMensProducts = async () => {
+const fetchMensProducts = async () => {
       try {
         const [shirts, shoes, watches] = await Promise.all([
-          axios.get('https://dummyjson.com/products/category/mens-shirts'),
-          axios.get('https://dummyjson.com/products/category/mens-shoes'),
-          axios.get('https://dummyjson.com/products/category/mens-watches')
+          axios.get(`https://dummyjson.com/products/category/mens-shirts?limit=${LIMIT}&skip=${SKIP}`),
+          axios.get(`https://dummyjson.com/products/category/mens-shoes?limit=${LIMIT}&skip=${SKIP}`),
+          axios.get(`https://dummyjson.com/products/category/mens-watches?limit=${LIMIT}&skip=${SKIP}`)
         ]);
 
         const allMensProducts = [
@@ -58,17 +65,39 @@ const [value, setValue] = useState(0);
           ...watches.data.products
         ];
 
-        setMensProducts(allMensProducts);
-// Initially show all products
-        setFilteredProducts(allMensProducts);
+        setMensProducts((prev)=>[...prev,...allMensProducts]);
+        // Initially show all products
+        setFilteredProducts((prev)=>[...prev, ...allMensProducts]);
         console.log(allMensProducts, 'all mens products');
+         setLoading(false)
       } catch (error) {
         console.log(error);
       }
     };
+ 
 
-    fetchMensProducts();
-  }, []);
+  const painationPage = () =>{
+      const TopScroll = document.documentElement.scrollTop;
+      const HeightInner = window.innerHeight;
+      const ScrollHeight = document.documentElement.scrollHeight;
+      
+      if(HeightInner + TopScroll + 100 >= ScrollHeight){
+        setPage((prev)=>prev + 1);
+        setLoading(true)
+        console.log(ScrollHeight,HeightInner,TopScroll)
+      }
+      
+  }
+    useEffect(()=>{
+      window.addEventListener('scroll',painationPage);
+     return () => {
+      window.removeEventListener('scroll', painationPage);
+    };
+    },[loading]);
+
+    useEffect(() => {   
+        fetchMensProducts();
+      }, [page]);
   return (
     <>
     <InnerBanner bannerImg={BannerImg}  />
@@ -77,7 +106,7 @@ const [value, setValue] = useState(0);
       <div className='leftPannel'>
          <h4>Discount Range</h4>
               <Radio.Group onChange={onChange}>
-              <Radio value="0-5">0% - 5%</Radio>
+              <Radio value="0-5">0% -5%</Radio>
               <Radio value="5-10">5% - 10%</Radio>
               <Radio value="10-15">10% - 15%</Radio>
               <Radio value="15+">15% & Above</Radio>
@@ -95,6 +124,9 @@ const [value, setValue] = useState(0);
             products={item} 
             id={item?.id}/>
         })}
+       {loading && <div className='loadingBg'><Spin description="Loading" size="large">
+       
+      </Spin> </div>}
         </div>
         </div>
         </div>

@@ -7,36 +7,43 @@ import { Radio } from 'antd';
 import Item from 'antd/es/list/Item';
 import womenBg from '../images/women.webp'
 import InnerBanner from '../components/InnerBanner';
+import { Alert, Flex, Spin } from 'antd';
+
 function Womens() {
+  const [page,setPage] = useState(1);
+  const LIMIT = 2;
+  const SKIP = (page - 1) * LIMIT;
   const[womens,setWomens] = useState([])
   const [filteredWomens, setFilteredWomens] = useState([]);
+  const[loading,setLoading] = useState(false)
 
   const{productData} = useContext(usersContext);
   useEffect(()=>{
 getProductsWomens()
-  },[]);
+  },[page]);
   //  const API = "https://dummyjson.com/products/category/womens-dresses";
   const getProductsWomens = async ()=>{  
 
     try{
+      setLoading(true)
       const [dresses,beauty,fragrances] = await Promise.all([
-        axios.get('https://dummyjson.com/products/category/womens-dresses'),
-        axios.get('https://dummyjson.com/products/category/beauty'),
-        axios.get('https://dummyjson.com/products/category/fragrances'),
+        axios.get(`https://dummyjson.com/products/category/womens-dresses?limit=${LIMIT}&skip=${SKIP}`),
+        axios.get(`https://dummyjson.com/products/category/beauty?limit=${LIMIT}&skip=${SKIP}`),
+        axios.get(`https://dummyjson.com/products/category/fragrances?limit=${LIMIT}&skip=${SKIP}`),
       ])
       const allWomenProduct = [...dresses?.data?.products,...beauty?.data?.products,...fragrances?.data?.products];
-      setWomens(allWomenProduct);
-      setFilteredWomens(allWomenProduct)
+      setWomens((prev)=>[...prev,...allWomenProduct]);
+      setFilteredWomens((prev)=>[...prev,...allWomenProduct]);
     }
     catch(error){
-      console.log(error,'error')
+      console.log(error,'error');
+      setLoading(false)
     }
     finally{
-
+setLoading(false)
     }
   }
   const handleOnchange = (e) =>{
-    // console.log(e.target.value,'Hello');
     const value = e.target.value;
     console.log(value,'click value____')
     let filteredItem = [];
@@ -62,6 +69,26 @@ getProductsWomens()
     }
         setFilteredWomens(filteredItem);
   }
+
+ const getWomensProducts = () => {
+   const ScrollHeight =  document.documentElement.scrollHeight;
+   const ScrollTop =  document.documentElement.scrollTop;
+   const InnerHeight =  window.innerHeight;
+   if(InnerHeight + ScrollTop + 1 >= ScrollHeight){
+    setPage((prev) => prev + 1);
+    setLoading(false)
+console.log(InnerHeight,ScrollTop,ScrollHeight)
+   }
+   
+ }
+
+ useEffect(()=>{
+  window.addEventListener('scroll',getWomensProducts);
+
+  return()=>{
+    window.removeEventListener('scroll',getWomensProducts);
+  }
+ },[loading])
   return (
     <>
     <InnerBanner bannerImg={womenBg} />
@@ -82,7 +109,9 @@ getProductsWomens()
               return <ProductInfoCard title={item?.title} price={item?.price} image={item?.thumbnail} discount={item?.discountPercentage} />
             })}
           </div>
-          </div>
+{loading && <div className='loadingBg'><Spin description="Loading" size="large">
+       
+      </Spin> </div>}          </div>
           </div>
     </div>
     </>

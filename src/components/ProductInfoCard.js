@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { EditOutlined, EllipsisOutlined, SettingOutlined,FireFilled,StarFilled } from '@ant-design/icons';
 import { Avatar, Card,Button } from 'antd';
 import { usersContext } from '../context/ProvideContext';
+import { Spin } from 'antd';
+
 const { Meta } = Card;
 
 const ProductInfoCard = ({title,description,image,price,products,id,discount,setNotify,notify,rating,handleImg}) => {
-  
+  const[loading ,setLoading] = useState(true)
   const {addToCart,value,productData} = useContext(usersContext);
   const final = price - (price * discount / 100);
   
@@ -14,14 +16,16 @@ const ProductInfoCard = ({title,description,image,price,products,id,discount,set
     hoverable
     style={{ width: 240 }}
     cover={
+      <div>
+        {loading && <div className='spinHeight'><Spin className='spinProducts' /></div>}
       <img
         draggable={false}
         alt="example"
         loading='lazy'
         src={image}
+        onLoad={()=>setLoading(false)}
         onClick={()=>handleImg(id)}
-      />
-    }
+      /></div>}
   >
     <span className='pos'>{discount}% <br/>OFF</span>
     <Meta title={title} description={description}  />
