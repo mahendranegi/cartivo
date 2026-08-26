@@ -11,6 +11,7 @@ import Lenis from "lenis";
 import Mens from './pages/Mens';
 import Womens from './pages/Womens';
 import Kids from './pages/Kids';
+import ProductCardDetails from './pages/ProductCardDetails';
 
 function App() {
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
        <Route path="/login" element={<Login />} />
       <Route element={<Layout />}>
       <Route path="/" element={<Home />}/>
-       <Route path="/product-details" element={<ProductDetails />}/>
+       <Route path="/product-details/id" element={<ProductDetails />}/>
        <Route path="/cart" element={<ViewCart />} />
        <Route path="/mens" element={<Mens />} />
        <Route path="/womens" element={<Womens />} />

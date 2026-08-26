@@ -1,23 +1,23 @@
 import React from 'react'
 import { Carousel } from 'antd';
 import WatchImg from '../images/watch.png';
+import One from '../images/one.webp'
+import Two from '../images/two.webp'
+import Three from '../images/three.webp'
 function HeroSection() {
 
   return (
     <div className='heroSec'>
-        <Carousel arrows infinite={false}>
+        <Carousel arrows effect="fade" autoplay infinite={true} dots={false}>
       <div>
-        
-        <div className='content'>1 <img src={WatchImg} alt={WatchImg}/></div>
+        <img />
+        <div className='content'><img src={One} alt={WatchImg}/></div>
       </div>
       <div>
-        <div className='content'>2 <img src={WatchImg} alt={WatchImg}/></div>
+        <div className='content'><img src={Two} alt={WatchImg}/></div>
       </div>
       <div>
-        <div className='content'>3 <img src={WatchImg} alt={WatchImg}/></div>
-      </div>
-      <div>
-        <div>4 <img src={WatchImg} alt={WatchImg}/></div>
+        <div className='content'><img src={Three} alt={WatchImg}/></div>
       </div>
     </Carousel>
     </div>

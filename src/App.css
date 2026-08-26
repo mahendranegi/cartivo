@@ -1,10 +1,23 @@
 /* Header */
-header{
-    display: flex;
+body{
+  background: #eff3f6;
+  font-family: "Roboto", sans-serif;
+}
+.container{
+  width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+header .container{
+display: flex;
     gap: 16px;
     justify-content: space-between;
-    padding: 16px 20px;
+   
     align-items: center;
+}
+header{
+     padding: 16px 20px;
         position: sticky;
     top: 0;
     z-index: 9;
@@ -147,25 +160,22 @@ body .ant-btn{
 .heroSec .slick-prev::after,.heroSec .slick-next::after{
     position: static !important;
 }
-.content img{
-    position: absolute;
-    top: 0;
-    right: 36px;
-}
+
 .content{
     position: relative;
 }
-.heroSec{
-    background: #212844;
-    height: 300px;
-    padding: 20px 24px;
+
+.heroSec img{
+  width: 100%;
 }
-.headTitleSec{
+.headTitleSec{    
+    padding: 16px 0px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.headTitleSec .container{
     display: flex;
     justify-content: space-between;
     gap: 24px;
-    padding: 16px 24px 0;
-    border-bottom: 1px solid #e0e0e0;
 }
 .headTitleSec h2{
     margin: 0;
@@ -508,7 +518,8 @@ body .ant-btn{
   gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 50px 40px;
+  padding: 48px;
+  margin: 48px 0 0;
 }
 
 .footerColumn {
@@ -598,17 +609,64 @@ body .ant-btn{
     flex-direction: column;
     gap: 16px;
 }
-.mainDiv{
+.innerBanner {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
+}
+
+.innerBanner img {
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  top: -10%;
+  left: 0;
+
+  object-fit: cover;
+
+  transform: translateY(var(--parallax, 0px));
+
+  will-change: transform;
+}
+.bannerContent h1{
+  margin: 0;
+  font-size: 64px;
+}
+.bannerContent {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  z-index: 2;
+}
+.mainDiv .container{
   display: flex;
   gap: 24px
 }
-
 .productCards{
   width: 100%;
       display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    justify-content: start;
+    gap: 24px;
+    justify-content: space-between;
+}
+body .productCards .ant-card {
+  width: 31% !important;
+}
+.leftPannel{
+    background: #fff;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    position: sticky;
+    min-width: 168px;
+    top: 100px;
+    height: calc(100vh - 160px);
 }
 .pos{
       background: #fe4134;
@@ -792,11 +850,15 @@ body .ant-btn{
     font-size: 14px;
   }
 }
-.flexBody{
-  display: flex;
+.flexBody .container{
+ display: flex;
   gap: 24px;
+   align-items: flex-start;
+}
+.flexBody{
+ 
   margin: 24px 0 0;
-      align-items: flex-start;
+     
       padding: 0 16px;
 }
 .flexBody .filterSec{

@@ -31,7 +31,8 @@ function Header() {
   }
   return (
     <header>
-         <span onClick={showDrawer}> Open</span>
+      <div className='container'>
+         {/* <span onClick={showDrawer}> Open</span> */}
        
         <div className='logoContain'>
           <img onClick={()=>navigate('/')} src={LogoImg} alt={LogoImg} className="logoImg"/> 
@@ -62,6 +63,7 @@ function Header() {
         <p>Some contents...</p>
         <p>Some contents...</p>
       </Drawer>
+      </div>
     </header>
   )
 }

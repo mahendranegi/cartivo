@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function ProductDetails() {
+  const[val,setVal] = useState([]);
+  
   return (
-    <div>ProductDetails</div>
+    <div className='productDetails'>
+      <div className='container'>ProductDetails</div>
+    </div>
   )
 }
 

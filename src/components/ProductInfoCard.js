@@ -4,7 +4,7 @@ import { Avatar, Card,Button } from 'antd';
 import { usersContext } from '../context/ProvideContext';
 const { Meta } = Card;
 
-const ProductInfoCard = ({title,description,image,price,products,id,discount,setNotify,notify,rating}) => {
+const ProductInfoCard = ({title,description,image,price,products,id,discount,setNotify,notify,rating,handleImg}) => {
   
   const {addToCart,value,productData} = useContext(usersContext);
   const final = price - (price * discount / 100);
@@ -19,6 +19,7 @@ const ProductInfoCard = ({title,description,image,price,products,id,discount,set
         alt="example"
         loading='lazy'
         src={image}
+        onClick={()=>handleImg(id)}
       />
     }
   >

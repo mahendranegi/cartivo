@@ -3,6 +3,8 @@ import { usersContext } from '../context/ProvideContext'
 import ProductInfoCard from '../components/ProductInfoCard'
 import axios from 'axios';
 import { Radio } from 'antd';
+import InnerBanner from '../components/InnerBanner';
+import BannerImg from '../images/men.webp'
 function Mens() {
     const [mensProducts, setMensProducts] = useState([]);
      const [filteredProducts, setFilteredProducts] = useState([]);
@@ -68,8 +70,11 @@ const [value, setValue] = useState(0);
     fetchMensProducts();
   }, []);
   return (
-    <div className='mainDiv'>
-      <div>
+    <>
+    <InnerBanner bannerImg={BannerImg}  />
+    <div className='flexBody'>
+      <div className="container">
+      <div className='leftPannel'>
          <h4>Discount Range</h4>
               <Radio.Group onChange={onChange}>
               <Radio value="0-5">0% - 5%</Radio>
@@ -78,6 +83,7 @@ const [value, setValue] = useState(0);
               <Radio value="15+">15% & Above</Radio>
             </Radio.Group>
       </div>
+      <div className='mainDiv'>
       <div className='productCards'>
         {filteredProducts.map((item)=>{
             return  <ProductInfoCard
@@ -90,7 +96,10 @@ const [value, setValue] = useState(0);
             id={item?.id}/>
         })}
         </div>
+        </div>
+        </div>
     </div>
+    </>
   )
 }
 
